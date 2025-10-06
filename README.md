@@ -41,11 +41,11 @@ Asegúrate de que Docker Desktop esté corriendo. Usaremos la contraseña bootca
 Ejecuta estos comandos dentro del directorio de tu proyecto en WSL:
 
   1. Crear y activar el entorno virtual
-  python3 -m venv venv
-  source venv/bin/activate
+       python3 -m venv venv
+       source venv/bin/activate
 
   2. Instalar las dependencias necesarias
-  pip install psycopg2-binary sentence-transformers numpy
+      pip install -r requirements.txt
 
 ## Paso 3: Ejecutar el Proyecto
 
