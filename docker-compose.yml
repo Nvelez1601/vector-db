@@ -6,7 +6,7 @@ services:
     restart: always # Asegura que se reinicie si falla
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD} # La contraseña se aplica aquí
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # La contraseña se aplica aquí
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "${POSTGRES_PORT}:5432"
