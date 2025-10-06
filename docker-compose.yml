@@ -1,0 +1,18 @@
+
+services:
+  postgres_db:
+    image: ankane/pgvector
+    container_name: pgvector-db
+    restart: always # Asegura que se reinicie si falla
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # La contraseña se aplica aquí
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Persistencia de datos (Recomendado)
+
+volumes:
+  pgdata:
+    driver: local
