@@ -39,7 +39,7 @@ def connect_db():
         return conn
     except Exception as e:
         # LOG DE ERROR CRÍTICO DE CONEXIÓN
-        print(f"\n[❌ ERROR CRÍTICO: CONEXIÓN] No se pudo conectar a la base de datos.")
+        print(f"\n[ERROR CRÍTICO: CONEXIÓN] No se pudo conectar a la base de datos.")
         print(f"  Asegúrate que Docker esté corriendo y la contraseña '{DB_PASSWORD}' sea correcta.")
         print(f"  Razón de psycopg2: {e}")
         return None
@@ -54,7 +54,7 @@ def ensure_vector_extension(conn):
         print("Extensión 'vector' verificada/creada exitosamente.")
     except Exception as e:
         # LOG DE ERROR DE EXTENSIÓN
-        print(f"[❌ ERROR: EXTENSIÓN] Falló la creación/verificación de la extensión 'vector'.")
+        print(f"[ERROR: EXTENSIÓN] Falló la creación/verificación de la extensión 'vector'.")
         print(f"  Razón: {e}")
         conn.rollback()
 
@@ -77,7 +77,7 @@ def setup_db(conn):
         print(f"Tabla 'items' (VECTOR({VECTOR_DIM})) creada exitosamente.") 
     except Exception as e:
         # LOG DE ERROR DE CONFIGURACIÓN DE TABLA
-        print(f"[❌ ERROR: SETUP DB] Falló la creación/eliminación de la tabla.")
+        print(f"[ERROR: SETUP DB] Falló la creación/eliminación de la tabla.")
         print(f"  Razón: {e}")
         conn.rollback() 
 
@@ -97,7 +97,7 @@ def insert_data(conn, description: str, vector: List[float]):
         print(f"  [+] Insertado: '{description[:40]}...'")
     except Exception as e:
         # LOG DE ERROR DE INSERCIÓN
-        print(f"[❌ ERROR: INSERCIÓN] Falló la inserción del dato '{description[:30]}...'.")
+        print(f"[ERROR: INSERCIÓN] Falló la inserción del dato '{description[:30]}...'.")
         print(f"  Razón: {e}")
         conn.rollback()
     
@@ -153,7 +153,7 @@ def find_most_similar(conn, query_text: str, limit: int = 2):
             
     except Exception as e:
         # LOG DE ERROR DE BÚSQUEDA
-        print(f"[❌ ERROR: BÚSQUEDA] Falló la consulta de similitud.")
+        print(f"[ERROR: BÚSQUEDA] Falló la consulta de similitud.")
         print(f"  Razón: {e}")
     
 # --- 5. Bloque Principal de Ejecución ---
@@ -193,4 +193,5 @@ if __name__ == "__main__":
         conn.close()
         print("\n[FIN] Conexión cerrada. ¡Bootcamp completado!")
     else:
+
         print("\n[FIN] El programa no pudo iniciar sin una conexión exitosa a la base de datos.")
